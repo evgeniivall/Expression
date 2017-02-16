@@ -10,7 +10,11 @@ CONFIG -= app_bundle
 TEMPLATE = app
 
 SOURCES += main.cpp \
-    expression.cpp
+    expression.cpp \
+    scopedptr.cpp \
+    sharedptr.cpp
 
 HEADERS += \
-    expression.h
+    expression.h \
+    scopedptr.h \
+    sharedptr.h

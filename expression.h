@@ -1,6 +1,7 @@
 #ifndef EXPRESSION_H
 #define EXPRESSION_H
 #include <iostream>
+#include <sharedptr.h>
 
 struct Number;
 struct BinaryOperation;
@@ -55,32 +56,22 @@ private:
     char op;
 };
 
-struct PrintBinaryOperationsVisitor : Visitor {
-    void visitNumber(Number const * number)
-    { }
-
-    void visitBinaryOperation(BinaryOperation const * bop)
-    {
-        bop->get_left()->visit(this);
-        std::cout << bop->get_op() << " ";
-        bop->get_right()->visit(this);
-    }
-};
-
-
-/* Этот класс вам нужно реализовать */
 struct PrintVisitor : Visitor {
     void visitNumber(Number const * number)
     {
-        /* ... */
+        std::cout << number->get_value() << " ";
     }
 
     void visitBinaryOperation(BinaryOperation const * bop)
     {
+        std::cout << "(";
         bop->get_left()->visit(this);
         std::cout << bop->get_op() << " ";
         bop->get_right()->visit(this);
+        std::cout << ")";
     }
 };
+
+
 
 #endif // EXPRESSION_H
